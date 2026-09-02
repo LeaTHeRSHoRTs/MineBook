@@ -1,0 +1,29 @@
+.root {
+    -fx-font-family: "Arial";
+    -fx-background-color: #222;
+    -fx-text-fill: white;
+}
+
+.label,
+.button,
+.text-field,
+.text-area,
+.check-box,
+.radio-button {
+    -fx-text-fill: white;
+}
+
+.button {
+    -fx-background-color: none;
+}
+
+
+/* Specific applied classes */
+.title {
+    -fx-font-size: 24px;
+}
+
+.main {
+    -fx-alignment: center;
+    -fx-spacing: 10px;
+}
