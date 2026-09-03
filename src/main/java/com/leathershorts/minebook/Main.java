@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.Objects;
 
 public class Main extends Application {
-    private final String stylesheet = getClass().getResource("/styles.css").toExternalForm();
+    private final String stylesheet = Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm();
 
     @Override
     public void start(Stage stage) {

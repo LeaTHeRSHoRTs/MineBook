@@ -6,5 +6,6 @@ public record ModpackInfo(
     String name,
     Version version,
 
-    List<ModInfo> mods
+    List<ModInfo> mods,
+    List<DatapackInfo> datapacks
 ) {}

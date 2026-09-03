@@ -5,7 +5,18 @@ public record Version(
     int minor,
     int patch
 ) {
-    @Override public int major() { return major; }
-    @Override public int patch() { return patch; }
-    @Override public int minor() { return minor; }
+    @Override
+    public int major() {
+        return major;
+    }
+
+    @Override
+    public int patch() {
+        return patch;
+    }
+
+    @Override
+    public int minor() {
+        return minor;
+    }
 }
