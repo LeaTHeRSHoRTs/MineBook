@@ -1,11 +1,10 @@
-package com.leathershorts.minebook.dataclasses.recipes;
+package com.leathershorts.minebook.dataclasses.packs.recipes;
 
-import com.leathershorts.minebook.dataclasses.ItemInfo;
+import com.leathershorts.minebook.dataclasses.content.Item;
 
-import java.util.Arrays;
 import java.util.List;
 
-public record ShapedRecipe(ItemInfo result, ItemInfo[] ingredients, int count) implements Recipe {
+public record ShapedRecipe(Item result, Item[] ingredients, int count) implements Recipe {
     public ShapedRecipe {
         if (ingredients.length != 9) {
             throw new IllegalArgumentException("Shaped recipe matrix must be exactly 9 slots.");
@@ -13,12 +12,12 @@ public record ShapedRecipe(ItemInfo result, ItemInfo[] ingredients, int count) i
     }
 
     @Override
-    public List<ItemInfo> getIngredients() {
+    public List<Item> getIngredients() {
         return List.of(ingredients);
     }
 
     @Override
-    public ItemInfo getResult() {
+    public Item getResult() {
         return null;
     }
 

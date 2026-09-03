@@ -1,6 +1,6 @@
-package com.leathershorts.minebook.dataclasses;
+package com.leathershorts.minebook.dataclasses.content;
 
-public record ItemInfo(
+public record Item(
     String namespace,
     String name
 ) {

@@ -1,10 +1,12 @@
-package com.leathershorts.minebook.dataclasses;
+package com.leathershorts.minebook.dataclasses.packs;
 
-import com.leathershorts.minebook.dataclasses.recipes.Recipe;
+import com.leathershorts.minebook.dataclasses.content.Tag;
+import com.leathershorts.minebook.dataclasses.packs.recipes.Recipe;
+import com.leathershorts.minebook.dataclasses.Version;
 
 import java.util.List;
 
-public record DatapackInfo(
+public record Datapack(
     String name,
     String desc,
 
