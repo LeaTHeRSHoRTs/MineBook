@@ -9,6 +9,15 @@ public record Version(
         this(major, minor, 0);
     }
 
+    public static Version parse(String version) {
+        String[] parts = version.split("\\.");
+        int major = parts.length > 0 ? Integer.parseInt(parts[0]) : 0;
+        int minor = parts.length > 1 ? Integer.parseInt(parts[1]) : 0;
+        int patch = parts.length > 2 ? Integer.parseInt(parts[2]) : 0;
+
+        return new Version(major, minor, patch);
+    }
+
     private String getVersion(InternalVersion type) {
         return switch (type) {
             case MAJOR -> "%d".formatted(this.major);

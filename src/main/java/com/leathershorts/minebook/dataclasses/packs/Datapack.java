@@ -1,6 +1,6 @@
 package com.leathershorts.minebook.dataclasses.packs;
 
-import com.leathershorts.minebook.dataclasses.content.Tag;
+import com.leathershorts.minebook.dataclasses.content.*;
 import com.leathershorts.minebook.dataclasses.packs.recipes.Recipe;
 import com.leathershorts.minebook.dataclasses.Version;
 
@@ -11,19 +11,19 @@ public record Datapack(
     String desc,
 
     Version version,
-    List<AdvancementInfo> advancements,
-    List<LootTableInfo> lootTables,
+    List<Advancement> advancements,
+    List<LootTable> lootTables,
     List<Recipe> recipes,
     List<Tag> blockItemTags,
-    List<StructureInfo> structures,
-    List<FunctionInfo> functions,
+    List<Structure> structures,
+    List<Function> functions,
     List<Tag> functionTags,
     List<Tag> entityTypeTags,
     List<Tag> biomeTags,
-    List<DimensionInfo> dimensions,
-    List<BiomeInfo> biomes,
-    List<DamageTypeInfo> damageTypes,
-    List<EnchantmentInfo> enchantments,
-    List<ItemModifierInfo> itemModifiers,
-    List<WorldgenInfo> worldgen
+    List<Dimension> dimensions,
+    List<Biome> biomes,
+    List<DamageType> damageTypes,
+    List<Enchantment> enchantments,
+    List<ItemModifier> itemModifiers,
+    List<Worldgen> worldgen
 ) {}
