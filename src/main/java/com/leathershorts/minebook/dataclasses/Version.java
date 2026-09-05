@@ -34,6 +34,10 @@ public record Version(
         return this.getVersion(InternalVersion.PATCH);
     }
 
+    @Override public String toString() {
+        return this.getFullVersion();
+    }
+
     private enum InternalVersion {
         MAJOR,
         MINOR,
