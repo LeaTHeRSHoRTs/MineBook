@@ -1,6 +1,6 @@
 package com.leathershorts.minebook.processors;
 
-import com.leathershorts.minebook.dataclasses.packs.Modpack;
+import com.leathershorts.minebook.game.structures.packs.Modpack;
 
 import java.io.IOException;
 import java.util.zip.ZipFile;

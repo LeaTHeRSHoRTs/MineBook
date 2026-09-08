@@ -1,6 +1,6 @@
 package com.leathershorts.minebook.pages;
 
-import com.leathershorts.minebook.dataclasses.packs.Modpack;
+import com.leathershorts.minebook.game.structures.packs.Modpack;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;

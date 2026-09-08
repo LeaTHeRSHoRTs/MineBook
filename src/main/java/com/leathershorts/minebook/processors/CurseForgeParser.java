@@ -1,8 +1,8 @@
 package com.leathershorts.minebook.processors;
 
-import com.leathershorts.minebook.dataclasses.Version;
-import com.leathershorts.minebook.dataclasses.packs.Loader;
-import com.leathershorts.minebook.dataclasses.packs.Modpack;
+import com.leathershorts.minebook.game.Version;
+import com.leathershorts.minebook.game.structures.packs.Loader;
+import com.leathershorts.minebook.game.structures.packs.Modpack;
 import com.leathershorts.minebook.manifests.CurseForgeManifest;
 
 import java.io.IOException;

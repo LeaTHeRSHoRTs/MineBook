@@ -1,65 +1,28 @@
 package com.leathershorts.minebook.pages.components;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 
-public class AppSidebar extends VBox {
-    private static final double EXPANDED_WIDTH = 220;
-    private static final double COLLAPSED_WIDTH = 55;
+import java.util.ArrayList;
+import java.util.List;
 
-    private final VBox contents = new VBox(10);
-    private final Button toggleButton = new Button("☰");
+public class AppSidebar extends HBox {
+    public AppSidebar(Item... pageSetups) {
+        List<Button> buttons = new ArrayList<>();
 
-    private boolean collapsed = false;
-
-    public AppSidebar() {
-        setSpacing(10);
-        setPadding(new Insets(10));
-        setPrefWidth(EXPANDED_WIDTH);
-        setMinWidth(USE_PREF_SIZE);
-        setMaxWidth(USE_PREF_SIZE);
-
-        toggleButton.setMaxWidth(Double.MAX_VALUE);
-        toggleButton.setOnAction(event -> toggle());
-
-        getChildren().addAll(toggleButton, contents);
-
-        addItem("Home");
-        addItem("Modpacks");
-        addItem("Settings");
-    }
-
-    public void addItem(String text) {
-        Button button = new Button(text);
-
-        button.setMaxWidth(Double.MAX_VALUE);
-        button.setUserData(text);
-
-        contents.getChildren().add(button);
-    }
-
-    public void setCollapsed(boolean collapsed) {
-        this.collapsed = collapsed;
-
-        if (collapsed) {
-            setPrefWidth(COLLAPSED_WIDTH);
-            contents.setVisible(false);
-            contents.setManaged(false);
-            toggleButton.setText("»");
-        } else {
-            setPrefWidth(EXPANDED_WIDTH);
-            contents.setVisible(true);
-            contents.setManaged(true);
-            toggleButton.setText("☰");
+        for (Item setup : pageSetups) {
+            Button button = new Button(setup.name);
+            button.setOnAction(a -> setup.action.run());
+            buttons.add(button);
         }
+
+        this.setMaxHeight(Region.USE_PREF_SIZE);
+        this.getStyleClass().add("sidebar");
+
+        getChildren().addAll(buttons);
+        getChildren().forEach(i -> i.getStyleClass().add("sidebar-item"));
     }
 
-    public void toggle() {
-        setCollapsed(!collapsed);
-    }
-
-    public boolean isCollapsed() {
-        return collapsed;
-    }
+    public record Item(String name, Runnable action) {}
 }

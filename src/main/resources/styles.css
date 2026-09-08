@@ -14,7 +14,11 @@
 }
 
 .button {
-    -fx-background-color: none;
+    -fx-background-color: #555;
+}
+.button:hover {
+    -fx-background-color: #666;
+    -fx-cursor: hand;
 }
 
 
@@ -26,4 +30,18 @@
 .main {
     -fx-alignment: center;
     -fx-spacing: 10px;
+}
+
+.sidebar {
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: #f00;
+    -fx-fill-width: true;
+    -fx-max-width: Infinity;
+}
+
+.sidebar-item {
+    -fx-max-width: Infinity;
 }

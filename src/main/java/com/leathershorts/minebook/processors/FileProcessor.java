@@ -1,12 +1,12 @@
 package com.leathershorts.minebook.processors;
 
-import com.leathershorts.minebook.dataclasses.packs.Modpack;
+import com.google.gson.Gson;
+import com.leathershorts.minebook.game.structures.packs.Modpack;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.zip.ZipFile;
 
@@ -121,5 +121,9 @@ public final class FileProcessor {
             throw new InvalidObjectException("Cannot read files that do not have the extension .zip or .mrpack");
         }
 
+    }
+
+    public static Gson makeModpackJson(Modpack pack) {
+        return null;
     }
 }

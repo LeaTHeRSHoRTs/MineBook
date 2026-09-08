@@ -1,18 +1,13 @@
 package com.leathershorts.minebook.processors;
 
-import com.leathershorts.minebook.dataclasses.packs.Modpack;
+import com.leathershorts.minebook.game.structures.packs.Modpack;
 
 import java.io.IOException;
 import java.util.zip.ZipFile;
 
 public class PrismLauncherParser implements ModpackParser {
     @Override
-    public boolean supports(String fileName) {
-        return false;
-    }
-
-    @Override
-    public Modpack parse(ZipFile archive) throws IOException {
+    public Modpack parse(ZipFile archive, String manifest) throws IOException {
         return null;
     }
 }

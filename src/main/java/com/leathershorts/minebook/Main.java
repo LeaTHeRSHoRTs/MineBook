@@ -1,76 +1,67 @@
 package com.leathershorts.minebook;
 
 import com.google.gson.Gson;
-import com.leathershorts.minebook.dataclasses.packs.Modpack;
-import com.leathershorts.minebook.processors.FileProcessor;
+import com.leathershorts.minebook.pages.HomePage;
+import com.leathershorts.minebook.pages.components.AppSidebar;
 import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InvalidObjectException;
 import java.util.Objects;
 
 public class Main extends Application {
+    private StackPane stack;
+    private BorderPane currentPage;
+
     public static final Gson GSON = new Gson();
-    private final String stylesheet = Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm();
+    private final String STYLESHEET = Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm();
+    private static final Screen PRIMARY = Screen.getPrimary();
 
     @Override
     public void start(Stage stage) {
-        Label title = new Label("MineBook");
-        title.getStyleClass().add("title");
+        stack = new StackPane();
 
-        Button filePicker = new Button("Choose an .mrpack or .zip file to upload");
-        Label selectedLabel = new Label("No file selected");
+        HomePage home = new HomePage(ModpackRepository.fetch());
+        AppSidebar sidebar = new AppSidebar(
+            new AppSidebar.Item("Home", this::showHome),
+            new AppSidebar.Item("Settings", this::showSettings)
+        );
 
-        filePicker.setOnAction(event -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Choose a Modpack");
-            fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter(
-                    "Modpack and ZIP files",
-                    "*.mrpack",
-                    "*.zip"
-                )
-            );
+        this.showHome();
+        stack.getChildren().add(sidebar);
+        stack.getStyleClass().add("root");
+        StackPane.setAlignment(home, Pos.CENTER);
+        StackPane.setAlignment(sidebar, Pos.TOP_CENTER);
 
-            File selectedFile = fileChooser.showOpenDialog(stage);
+        Rectangle2D bounds = PRIMARY.getVisualBounds();
+        double width = bounds.getWidth() / 2;
+        double height = bounds.getHeight() / 2;
 
-            if (selectedFile != null) {
-                selectedLabel.setText("Selected: " + selectedFile.getName());
-                System.out.println(selectedFile.getAbsolutePath());
-
-                Modpack pack;
-
-                try {
-                    pack = FileProcessor.processModpack(selectedFile);
-                } catch (InvalidObjectException e) {
-                    System.out.println(e.getMessage());
-                } catch (IOException e) {
-
-                }
-            }
-        });
-        filePicker.getStyleClass().add("file-picker");
-
-        VBox layout = new VBox(title, filePicker, selectedLabel);
-        layout.getStyleClass().add("main");
-        Scene scene = new Scene(layout, 450, 200);
-        scene.getStylesheets().add(stylesheet);
-
+        Scene scene = new Scene(stack, width, height);
+        scene.getStylesheets().add(STYLESHEET);
         stage.setTitle("MineBook");
         stage.setScene(scene);
         stage.show();
     }
 
+    /** Shows the homepage to the user via the stack */
+    private void showHome() {
+        HomePage home = new HomePage(ModpackRepository.fetch());
+        StackPane.setAlignment(home, Pos.CENTER);
+        stack.getChildren().add(home);
+    }
+
+    /** Shows the settings page to the user via the stack */
+    private void showSettings() {
+
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
-
-
 }
