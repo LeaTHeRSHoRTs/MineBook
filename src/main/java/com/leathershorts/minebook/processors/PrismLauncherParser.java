@@ -8,6 +8,7 @@ import java.util.zip.ZipFile;
 public class PrismLauncherParser implements ModpackParser {
     @Override
     public Modpack parse(ZipFile archive, String manifest) throws IOException {
+        System.out.println("Prism Launcher modpack found");
         return null;
     }
 }
