@@ -18,26 +18,20 @@ import java.util.List;
 import java.util.Objects;
 
 public class HomePage extends BorderPane {
-    private static boolean open = false;
-
     public HomePage(List<Modpack> modpacks) {
-        setCenter(createContent(modpacks));
-        open = true;
+        this.setCenter(createContent(modpacks));
     }
 
     private VBox createContent(List<Modpack> modpacks) {
         if (!modpacks.isEmpty()) {
             VBox content = new VBox(10);
+            Label heading = new Label("Modpacks");
+
+            heading.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+            content.getChildren().add(heading);
             content.setPadding(new Insets(20));
 
-            Label heading = new Label("Modpacks");
-            heading.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
-            content.getChildren().add(heading);
-
-            for (Modpack modpack : modpacks) {
-                content.getChildren().add(createModpackItem(modpack));
-            }
+            for (Modpack modpack : modpacks) content.getChildren().add(createModpackItem(modpack));
 
             return content;
         } else {
@@ -64,16 +58,14 @@ public class HomePage extends BorderPane {
 
                 if (selectedFile != null) {
                     selectedLabel.setText("Selected: " + selectedFile.getName());
-                    System.out.println(selectedFile.getAbsolutePath());
 
                     Modpack pack;
                     try {
                         pack = FileProcessor.processModpack(selectedFile);
                         ModpackRepository.save(pack);
-                    } catch (InvalidObjectException e) {
-                        System.out.println(e.getMessage());
+                        System.out.println("Saved modpack "+ pack.name());
                     } catch (IOException e) {
-
+                        System.out.println(e.getMessage());
                     }
                 }
             });

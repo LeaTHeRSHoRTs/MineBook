@@ -25,8 +25,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         stack = new StackPane();
-
-        HomePage home = new HomePage(ModpackRepository.fetch());
         AppSidebar sidebar = new AppSidebar(
             new AppSidebar.Item("Home", this::showHome),
             new AppSidebar.Item("Settings", this::showSettings)
@@ -35,7 +33,6 @@ public class Main extends Application {
         this.showHome();
         stack.getChildren().add(sidebar);
         stack.getStyleClass().add("root");
-        StackPane.setAlignment(home, Pos.CENTER);
         StackPane.setAlignment(sidebar, Pos.TOP_CENTER);
 
         Rectangle2D bounds = PRIMARY.getVisualBounds();
